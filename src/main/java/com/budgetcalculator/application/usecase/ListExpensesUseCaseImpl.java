@@ -24,11 +24,23 @@ public class ListExpensesUseCaseImpl implements ListExpensesUseCase {
 
     @Override
     public Expense findExpense(Long expenseId) {
-        return null;
+        return mockFindExpenseByIdInDatabase(expenseId).orElse(null);
     }
 
     public Optional<Expense> mockFindExpenseByIdInDatabase(Long expenseId) {
-        Expense expense = new Expense();
+        Expense expense;
+
+        if (expenseId == 1) {
+            expense = new Expense(1L, "pizza",
+                    new Money(Currency.EURO, 10.5),
+                    Category.FOOD);
+        } else if (expenseId == 2) {
+            expense = new Expense(2L, "diesel",
+                    new Money(Currency.EURO, 80.1),
+                    Category.TRANSPORT);
+        } else {
+            expense = null;
+        }
 
         return Optional.of(expense);
     }
