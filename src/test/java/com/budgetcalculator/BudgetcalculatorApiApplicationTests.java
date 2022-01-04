@@ -1,4 +1,4 @@
-package com.budgetcalculator.budgetcalculatorapi;
+package com.budgetcalculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
