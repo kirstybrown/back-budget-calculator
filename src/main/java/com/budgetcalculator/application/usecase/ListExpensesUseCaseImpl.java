@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@NoArgsConstructor
 public class ListExpensesUseCaseImpl implements ListExpensesUseCase {
 
     private final ExpenseRepository expenseRepository;
