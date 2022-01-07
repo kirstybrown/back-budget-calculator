@@ -3,10 +3,14 @@ package com.budgetcalculator.application.query_service;
 import com.budgetcalculator.domain.model.aggregate.Expense;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ListExpensesUseCase {
 
-    public List<Expense> listExpenses();
+    public List<Expense> findAll();
 
-    public Expense findExpense(Long expenseId);
+    public Expense findById(Long id);
+
+    public Expense save(Expense expense);
+
 }
