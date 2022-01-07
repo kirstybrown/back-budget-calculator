@@ -2,13 +2,16 @@ package com.budgetcalculator.api;
 
 import com.budgetcalculator.application.query_service.ListExpensesUseCase;
 import com.budgetcalculator.domain.model.aggregate.Expense;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping(path = "/expenses")
@@ -21,13 +24,24 @@ public class ExpenseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Expense>> getAllExpenses() {
-        return ResponseEntity.ok(this.listExpensesUseCase.listExpenses());
+    public ResponseEntity<List<Expense>> readAll() {
+        return ResponseEntity.ok(this.listExpensesUseCase.findAll());
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Expense> mockFindExpenseByIdInDatabase(@PathVariable(value = "id") Long expenseId) {
-        return ResponseEntity.ok(this.listExpensesUseCase.findExpense(expenseId));
+    public ResponseEntity<Expense> read (@PathVariable(value = "id") Long expenseId) {
+        try {
+            return ResponseEntity.ok(this.listExpensesUseCase.findById(expenseId));
+        } catch (RuntimeException error) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<?> create (@RequestBody Expense expense) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(this.listExpensesUseCase.save(expense));
     }
 
 }
