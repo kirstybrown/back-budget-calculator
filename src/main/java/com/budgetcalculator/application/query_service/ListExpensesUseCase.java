@@ -11,6 +11,8 @@ public interface ListExpensesUseCase {
 
     public Expense findById(Long id);
 
-    public Expense save(Expense expense);
+    public Expense create(Expense expense);
+
+    public Expense update(Expense updatedExpense, Long id);
 
 }

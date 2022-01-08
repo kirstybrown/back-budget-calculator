@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +42,19 @@ public class ExpenseController {
     public ResponseEntity<?> create (@RequestBody Expense expense) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(this.listExpensesUseCase.save(expense));
+                .body(this.listExpensesUseCase.create(expense));
+    }
+
+    @PutMapping (path = "/{id}")
+    public ResponseEntity<?> update (@RequestBody Expense updatedExpense, @PathVariable(value = "id") Long expenseId) {
+
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.listExpensesUseCase.update(updatedExpense, expenseId));
+        } catch (RuntimeException error) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
