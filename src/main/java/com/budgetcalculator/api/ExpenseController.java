@@ -57,4 +57,14 @@ public class ExpenseController {
         }
     }
 
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<?> delete (@PathVariable(value = "id") Long expenseId) {
+
+        try {
+            this.listExpensesUseCase.deleteById(expenseId);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException error) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

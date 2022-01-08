@@ -65,4 +65,16 @@ public class ListExpensesUseCaseImpl implements ListExpensesUseCase {
         }
         return null;
     }
+
+    @Override
+    @Transactional
+    public void deleteById(Long expenseId) {
+
+        Optional<Expense> expense = this.expenseRepository.findById(expenseId);
+
+        if(expense.isPresent()) {
+            Expense expenseToDelete = expense.get();
+            this.expenseRepository.delete(expenseToDelete);
+        }
+    }
 }
