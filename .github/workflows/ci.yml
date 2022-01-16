@@ -13,19 +13,14 @@ jobs:
   build_and_test:
 
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:8
-        env:
-          MYSQL_DATABASE: budget_calculator
-          MYSQL_USER: user
-          MYSQL_PASSWORD: 1234
-          MYSQL_ROOT_PASSWORD: 1234
-        ports:
-        - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
+    - uses: actions/checkout@v2
+    - name: Set up Mysql 8
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: '8.0'
+    - run: mysql -uroot -h127.0.0.1 -e 'SELECT version()'
+
     - uses: actions/checkout@v2
     - name: Set up JDK 17
       uses: actions/setup-java@v2
