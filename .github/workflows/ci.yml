@@ -18,9 +18,9 @@ jobs:
         image: mysql:8
         env:
           MYSQL_DATABASE: budget_calculator
-          MYSQL_USER: root
+          MYSQL_USER: user
           MYSQL_PASSWORD: 1234
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: 1234
         ports:
         - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -32,5 +32,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+        cache: maven
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
