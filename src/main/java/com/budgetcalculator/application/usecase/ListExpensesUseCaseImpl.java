@@ -45,7 +45,36 @@ public class ListExpensesUseCaseImpl implements ListExpensesUseCase {
 
     @Override
     @Transactional
-    public Expense save(Expense expense) {
+    public Expense create(Expense expense) {
         return this.expenseRepository.save(expense);
+    }
+
+    @Override
+    @Transactional
+    public Expense update(Expense updatedExpense, Long expenseId) {
+        Optional<Expense> expense = this.expenseRepository.findById(expenseId);
+
+        if(expense.isPresent()) {
+            Expense expenseDB = expense.get();
+            expenseDB.setName(updatedExpense.getName());
+            expenseDB.setCurrency(updatedExpense.getCurrency());
+            expenseDB.setAmount(updatedExpense.getAmount());
+            expenseDB.setCategory(updatedExpense.getCategory());
+
+            return this.expenseRepository.save(expenseDB);
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long expenseId) {
+
+        Optional<Expense> expense = this.expenseRepository.findById(expenseId);
+
+        if(expense.isPresent()) {
+            Expense expenseToDelete = expense.get();
+            this.expenseRepository.delete(expenseToDelete);
+        }
     }
 }
