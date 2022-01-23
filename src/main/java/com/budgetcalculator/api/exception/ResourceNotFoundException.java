@@ -1,10 +1,7 @@
 package com.budgetcalculator.api.exception;
 
-import org.springframework.stereotype.Component;
-
 import java.io.Serial;
 
-@Component
 public class ResourceNotFoundException extends RuntimeException {
 
     @Serial
