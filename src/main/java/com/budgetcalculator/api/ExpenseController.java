@@ -33,7 +33,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create (@RequestBody Expense expense) {
+    public ResponseEntity<Expense> create (@RequestBody Expense expense) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(this.listExpensesUseCase.create(expense));
