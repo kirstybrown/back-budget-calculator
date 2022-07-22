@@ -1,4 +1,4 @@
-package com.budgetcalculator.api.exception;
+package com.budgetcalculator.shared.config.exception;
 
 import java.io.Serial;
 

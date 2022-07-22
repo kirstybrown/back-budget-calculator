@@ -1,4 +1,4 @@
-package com.budgetcalculator.api.exception;
+package com.budgetcalculator.shared.config.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

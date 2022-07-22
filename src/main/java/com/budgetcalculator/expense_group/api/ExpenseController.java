@@ -1,30 +1,28 @@
-package com.budgetcalculator.api;
+package com.budgetcalculator.expense_group.api;
 
-import com.budgetcalculator.application.query_service.ListExpensesUseCase;
-import com.budgetcalculator.domain.model.aggregate.Expense;
+import com.budgetcalculator.expense_group.application.query_service.ListExpensesUseCase;
+import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/expenses")
 public class ExpenseController {
 
     private final ListExpensesUseCase listExpensesUseCase;
 
-    public ExpenseController(ListExpensesUseCase listExpensesUseCase) {
-        this.listExpensesUseCase = listExpensesUseCase;
-    }
-
     @GetMapping
-    public ResponseEntity<List<Expense>> readAll() {
-        return ResponseEntity.ok(this.listExpensesUseCase.findAll());
+    public ResponseEntity<List<ExpenseEntity>> readAll() {
+        return ResponseEntity.ok(listExpensesUseCase.findAll());
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Expense> read (@PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity<ExpenseEntity> read (@PathVariable(value = "id") Long expenseId) {
         try {
             return ResponseEntity.ok(this.listExpensesUseCase.findById(expenseId));
         } catch (RuntimeException error) {
@@ -33,19 +31,19 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> create (@RequestBody Expense expense) {
+    public ResponseEntity<ExpenseEntity> create (@RequestBody ExpenseEntity expenseEntity) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(this.listExpensesUseCase.create(expense));
+                .body(this.listExpensesUseCase.create(expenseEntity));
     }
 
     @PutMapping (path = "/{id}")
-    public ResponseEntity<?> update (@RequestBody Expense updatedExpense, @PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity<?> update (@RequestBody ExpenseEntity updatedExpenseEntity, @PathVariable(value = "id") Long expenseId) {
 
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(this.listExpensesUseCase.update(updatedExpense, expenseId));
+                    .body(this.listExpensesUseCase.update(updatedExpenseEntity, expenseId));
         } catch (RuntimeException error) {
             return ResponseEntity.notFound().build();
         }
