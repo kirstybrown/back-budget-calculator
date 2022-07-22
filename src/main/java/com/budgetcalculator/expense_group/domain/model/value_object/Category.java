@@ -1,26 +1,17 @@
 package com.budgetcalculator.expense_group.domain.model.value_object;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Category extends ValueObject {
+@Getter
+@RequiredArgsConstructor
+public enum Category {
 
-    private CategoryEnum category;
-
-    public enum CategoryEnum {
         OTHER,
         FOOD,
         BILLS,
         TRANSPORT,
         RENT,
         PURCHASES
-    }
 }
 
 

@@ -10,8 +10,6 @@ public interface ListExpensesUseCase {
 
     public ExpenseEntity findById(Long id);
 
-    public ExpenseEntity create(ExpenseEntity expenseEntity);
-
     public ExpenseEntity update(ExpenseEntity updatedExpenseEntity, Long id);
 
     public void deleteById(Long expenseId);

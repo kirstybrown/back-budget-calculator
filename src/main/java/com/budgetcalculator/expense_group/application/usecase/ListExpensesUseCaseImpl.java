@@ -53,12 +53,6 @@ public class ListExpensesUseCaseImpl implements ListExpensesUseCase {
 
     @Override
     @Transactional
-    public ExpenseEntity create(ExpenseEntity expenseEntity) {
-        return null;
-    }
-
-    @Override
-    @Transactional
     public ExpenseEntity update(ExpenseEntity updatedExpenseEntity, Long expenseId) {
         return null;
     }
