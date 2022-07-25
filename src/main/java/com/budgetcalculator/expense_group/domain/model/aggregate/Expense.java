@@ -32,11 +32,16 @@ public class Expense extends Aggregate {
 
     private Set<Participant> beneficiaries;
 
-    public Expense(Money money, String category, Long payerId, Set<Long> beneficiaries) {
+    public Expense(Money money, String category, Long payerId, Set<Long> beneficiaryIds) {
 
         this.money = money;
         this.category = EnumUtils.getEnum(Category.class, category, Category.OTHER);
         this.date = LocalDateTime.now();
+        this.payer = Participant.builder().participantId(payerId).build();
+        beneficiaryIds.forEach(beneficiaryId -> {
+            var beneficiary = Participant.builder().participantId(beneficiaryId).build();
+            this.beneficiaries.add(beneficiary);
+        });
     }
 
 }
