@@ -3,6 +3,7 @@ package com.budgetcalculator.expense_group.api.controller;
 import com.budgetcalculator.expense_group.api.dto.ExpenseDTO;
 import com.budgetcalculator.expense_group.api.mapper.ExpenseApiMapper;
 import com.budgetcalculator.expense_group.application.command_service.CreateExpenseUseCase;
+import com.budgetcalculator.expense_group.application.command_service.UpdateExpenseUseCase;
 import com.budgetcalculator.expense_group.application.query_service.ListExpensesUseCase;
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
@@ -23,6 +24,8 @@ public class ExpenseController {
 
     private final CreateExpenseUseCase createExpenseUseCase;
 
+    private final UpdateExpenseUseCase updateExpenseUseCase;
+
     private final ExpenseApiMapper expenseApiMapper;
 
     @GetMapping
@@ -40,7 +43,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<ExpenseEntity> create (@RequestBody ExpenseDTO expenseDTO) {
+    public ResponseEntity<Expense> create (@RequestBody ExpenseDTO expenseDTO) {
 
         var expense = expenseApiMapper.asExpense(expenseDTO);
 
@@ -52,12 +55,15 @@ public class ExpenseController {
     }
 
     @PutMapping (path = "/{id}")
-    public ResponseEntity<?> update (@RequestBody ExpenseEntity updatedExpenseEntity, @PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity<Expense> update (@RequestBody ExpenseDTO updatedExpenseDTO, @PathVariable(value = "id") Long expenseId) {
+
+        var updatedExpense = expenseApiMapper.asExpense(updatedExpenseDTO);
 
         try {
+            updateExpenseUseCase.updateExpense(updatedExpense);
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(this.listExpensesUseCase.update(updatedExpenseEntity, expenseId));
+                    .build();
         } catch (RuntimeException error) {
             return ResponseEntity.notFound().build();
         }
