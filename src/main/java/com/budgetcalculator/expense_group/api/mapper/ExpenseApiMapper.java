@@ -6,4 +6,6 @@ import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 public interface ExpenseApiMapper {
 
     Expense asExpense(ExpenseDTO src);
+
+    ExpenseDTO asExpenseDTO(Expense expense);
 }

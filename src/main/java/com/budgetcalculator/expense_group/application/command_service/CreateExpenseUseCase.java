@@ -4,5 +4,5 @@ import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 
 public interface CreateExpenseUseCase {
 
-    void createExpense(Expense expense);
+    Expense createExpense(Expense expense);
 }
