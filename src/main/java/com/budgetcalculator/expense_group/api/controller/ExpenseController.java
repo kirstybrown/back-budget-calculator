@@ -3,6 +3,7 @@ package com.budgetcalculator.expense_group.api.controller;
 import com.budgetcalculator.expense_group.api.dto.ExpenseDTO;
 import com.budgetcalculator.expense_group.api.mapper.ExpenseApiMapper;
 import com.budgetcalculator.expense_group.application.command_service.CreateExpenseUseCase;
+import com.budgetcalculator.expense_group.application.command_service.DeleteExpenseUseCase;
 import com.budgetcalculator.expense_group.application.command_service.UpdateExpenseUseCase;
 import com.budgetcalculator.expense_group.application.query_service.ListExpensesUseCase;
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
@@ -24,6 +25,8 @@ public class ExpenseController {
     private final CreateExpenseUseCase createExpenseUseCase;
 
     private final UpdateExpenseUseCase updateExpenseUseCase;
+
+//    private final DeleteExpenseUseCase deleteExpenseUseCase;
 
     private final ExpenseApiMapper expenseApiMapper;
 
@@ -61,24 +64,19 @@ public class ExpenseController {
 
         var expense = expenseApiMapper.asExpense(expenseDTO);
 
-        try {
-            updateExpenseUseCase.updateExpense(expense);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .build();
-        } catch (RuntimeException error) {
-            return ResponseEntity.notFound().build();
-        }
+        updateExpenseUseCase.updateExpense(expense, expenseId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
     }
 
     @DeleteMapping ("/{id}")
     public ResponseEntity<?> deleteExpense(@PathVariable(value = "id") Long expenseId) {
 
-        try {
-            this.listExpensesUseCase.deleteById(expenseId);
-            return ResponseEntity.ok().build();
-        } catch (RuntimeException error) {
-            return ResponseEntity.notFound().build();
-        }
+//        deleteExpenseUseCase.deleteById(expenseId);
+
+        return ResponseEntity.ok()
+                .build();
     }
 }

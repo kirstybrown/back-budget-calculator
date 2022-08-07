@@ -4,5 +4,5 @@ import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 
 public interface UpdateExpenseUseCase {
 
-    void updateExpense(Expense updatedExpense);
+    void updateExpense(Expense updatedExpense, Long expenseId);
 }
