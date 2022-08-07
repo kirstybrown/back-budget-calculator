@@ -67,4 +67,11 @@ public class ExpenseInfraMapper {
 
         return new Expense(expenseId, money, category, payer, beneficiaries);
     }
+
+    public ExpenseIdEntity asExpenseIdEntity(ExpenseId src) {
+
+        return ExpenseIdEntity.builder()
+                .expenseId(src.getId())
+                .build();
+    }
 }
