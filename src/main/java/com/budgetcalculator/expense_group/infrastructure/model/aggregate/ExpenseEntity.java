@@ -21,11 +21,11 @@ public class ExpenseEntity implements Serializable {
     @Id
     private String id;
 
-    private ExpenseIdEntity expenseIdEntity;
+    private ExpenseIdEntity expenseId;
 
-    private MoneyEntity moneyEntity;
+    private MoneyEntity money;
 
-    private CategoryEntity categoryEntity;
+    private CategoryEntity category;
 
     private LocalDateTime date;
 

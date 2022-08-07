@@ -1,25 +1,28 @@
 package com.budgetcalculator.expense_group.api.dto;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Builder
 public class ExpenseDTO {
 
-    private String id;
+    private String expenseId;
 
     private String currency;
 
     private Double amount;
 
-    private String category;
+    private CategoryEnumDTO category;
 
-    private Long participantId;
+    private LocalDateTime date;
 
-    private Set<Long> beneficiaries;
+    private Boolean isSettled;
+
+    private ParticipantDTO payer;
+
+    private Set<ParticipantDTO> beneficiaries;
 }

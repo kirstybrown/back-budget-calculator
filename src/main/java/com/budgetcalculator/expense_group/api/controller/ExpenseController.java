@@ -8,15 +8,14 @@ import com.budgetcalculator.expense_group.application.query_service.ListExpenses
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/expenses")
 public class ExpenseController {
 
@@ -29,12 +28,13 @@ public class ExpenseController {
     private final ExpenseApiMapper expenseApiMapper;
 
     @GetMapping
-    public ResponseEntity<List<ExpenseEntity>> readAll() {
+    public ResponseEntity<List<ExpenseEntity>> getExpenses() {
+
         return ResponseEntity.ok(listExpensesUseCase.findAll());
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ExpenseEntity> read (@PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity<ExpenseEntity> getExpense(@PathVariable(value = "id") Long expenseId) {
         try {
             return ResponseEntity.ok(this.listExpensesUseCase.findById(expenseId));
         } catch (RuntimeException error) {
@@ -43,24 +43,26 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> create (@RequestBody ExpenseDTO expenseDTO) {
+    public ResponseEntity<ExpenseDTO> createExpense(@RequestBody ExpenseDTO expenseDTO) {
 
         var expense = expenseApiMapper.asExpense(expenseDTO);
 
-        createExpenseUseCase.createExpense(expense);
+        var expenseSaved = createExpenseUseCase.createExpense(expense);
+
+        var expenseSavedDTO = expenseApiMapper.asExpenseDTO(expenseSaved);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .build();
+                .body(expenseSavedDTO);
     }
 
     @PutMapping (path = "/{id}")
-    public ResponseEntity<Expense> update (@RequestBody ExpenseDTO updatedExpenseDTO, @PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity<Expense> updateExpense (@RequestBody ExpenseDTO expenseDTO, @PathVariable(value = "id") Long expenseId) {
 
-        var updatedExpense = expenseApiMapper.asExpense(updatedExpenseDTO);
+        var expense = expenseApiMapper.asExpense(expenseDTO);
 
         try {
-            updateExpenseUseCase.updateExpense(updatedExpense);
+            updateExpenseUseCase.updateExpense(expense);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .build();
@@ -70,7 +72,7 @@ public class ExpenseController {
     }
 
     @DeleteMapping ("/{id}")
-    public ResponseEntity<?> delete (@PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity<?> deleteExpense(@PathVariable(value = "id") Long expenseId) {
 
         try {
             this.listExpensesUseCase.deleteById(expenseId);
