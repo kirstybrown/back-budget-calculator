@@ -1,11 +1,7 @@
-package com.budgetcalculator.shared.config.exception;
+package com.budgetcalculator.expense_group.domain.exception;
 
-import java.io.Serial;
 
 public class ResourceNotFoundException extends RuntimeException {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
 
     public ResourceNotFoundException(String msg) {
         super(msg);

@@ -1,4 +1,4 @@
-package com.budgetcalculator.shared.config.exception;
+package com.budgetcalculator.expense_group.api.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
