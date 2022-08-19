@@ -3,6 +3,7 @@ package com.budgetcalculator.expense_group.api.controller;
 import com.budgetcalculator.expense_group.api.dto.ExpenseDTO;
 import com.budgetcalculator.expense_group.api.mapper.ExpenseApiMapper;
 import com.budgetcalculator.expense_group.application.command_service.CreateExpenseUseCase;
+import com.budgetcalculator.expense_group.application.command_service.DeleteExpenseUseCase;
 import com.budgetcalculator.expense_group.application.command_service.UpdateExpenseUseCase;
 import com.budgetcalculator.expense_group.application.query_service.ListExpensesUseCase;
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
