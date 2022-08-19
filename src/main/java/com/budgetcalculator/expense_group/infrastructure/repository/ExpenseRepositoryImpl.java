@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Repository
@@ -23,6 +24,11 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
     @Override
     public List<ExpenseEntity> findAllExpenses() {
         return expenseMongoRepository.findAll();
+    }
+
+    @Override
+    public Optional<Expense> findById(Long expenseId) {
+        return Optional.empty();
     }
 
     @Override

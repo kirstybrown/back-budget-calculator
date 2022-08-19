@@ -4,12 +4,14 @@ import com.budgetcalculator.expense_group.domain.model.entity.Participant;
 import com.budgetcalculator.expense_group.domain.model.value_object.Category;
 import com.budgetcalculator.expense_group.domain.model.value_object.Money;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.EnumUtils;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 public class Expense extends Aggregate {
 
     private ExpenseId expenseId;
