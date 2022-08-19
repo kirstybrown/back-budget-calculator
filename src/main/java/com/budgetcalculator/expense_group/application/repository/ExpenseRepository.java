@@ -1,6 +1,7 @@
 package com.budgetcalculator.expense_group.application.repository;
 
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
+import com.budgetcalculator.expense_group.domain.model.aggregate.ExpenseId;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface ExpenseRepository {
     Optional<Expense> findById(Long expenseId);
 
     Expense persist(Expense expense);
+
+    void deleteExpenseById(ExpenseId expenseId);
 }

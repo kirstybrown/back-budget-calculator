@@ -2,6 +2,7 @@ package com.budgetcalculator.expense_group.infrastructure.repository;
 
 import com.budgetcalculator.expense_group.application.repository.ExpenseRepository;
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
+import com.budgetcalculator.expense_group.domain.model.aggregate.ExpenseId;
 import com.budgetcalculator.expense_group.infrastructure.mapper.ExpenseInfraMapper;
 import com.budgetcalculator.expense_group.infrastructure.model.ExpenseMongoRepository;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
@@ -38,5 +39,13 @@ public class ExpenseRepositoryImpl implements ExpenseRepository {
         var expenseEntityDB = expenseMongoRepository.save(expenseEntity);
 
         return expenseInfraMapper.asExpense(expenseEntityDB);
+    }
+
+    @Override
+    public void deleteExpenseById(ExpenseId expenseId) {
+
+        var expenseIdEntity = expenseInfraMapper.asExpenseIdEntity(expenseId);
+
+        expenseMongoRepository.deleteByExpenseId(expenseIdEntity);
     }
 }

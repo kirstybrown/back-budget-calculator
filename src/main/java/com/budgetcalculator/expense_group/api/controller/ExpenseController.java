@@ -6,14 +6,17 @@ import com.budgetcalculator.expense_group.application.command_service.CreateExpe
 import com.budgetcalculator.expense_group.application.command_service.UpdateExpenseUseCase;
 import com.budgetcalculator.expense_group.application.query_service.ListExpensesUseCase;
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
+import com.budgetcalculator.expense_group.domain.model.aggregate.ExpenseId;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/expenses")
@@ -25,7 +28,7 @@ public class ExpenseController {
 
     private final UpdateExpenseUseCase updateExpenseUseCase;
 
-//    private final DeleteExpenseUseCase deleteExpenseUseCase;
+    private final DeleteExpenseUseCase deleteExpenseUseCase;
 
     private final ExpenseApiMapper expenseApiMapper;
 
@@ -72,9 +75,13 @@ public class ExpenseController {
     }
 
     @DeleteMapping ("/{id}")
-    public ResponseEntity<?> deleteExpense(@PathVariable(value = "id") Long expenseId) {
+    public ResponseEntity deleteExpense(@PathVariable(value = "id") String id) {
 
-//        deleteExpenseUseCase.deleteById(expenseId);
+        log.info(id);
+
+        ExpenseId expenseId = new ExpenseId(id);
+
+        deleteExpenseUseCase.deleteExpenseById(expenseId);
 
         return ResponseEntity.ok()
                 .build();
