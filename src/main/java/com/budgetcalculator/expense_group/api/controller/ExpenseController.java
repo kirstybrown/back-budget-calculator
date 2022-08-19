@@ -5,7 +5,7 @@ import com.budgetcalculator.expense_group.api.mapper.ExpenseApiMapper;
 import com.budgetcalculator.expense_group.application.command_service.CreateExpenseUseCase;
 import com.budgetcalculator.expense_group.application.command_service.DeleteExpenseUseCase;
 import com.budgetcalculator.expense_group.application.command_service.UpdateExpenseUseCase;
-import com.budgetcalculator.expense_group.application.query_service.ListExpensesUseCase;
+import com.budgetcalculator.expense_group.application.query_service.ListExpensesBetweenDatesUseCase;
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 import com.budgetcalculator.expense_group.domain.model.aggregate.ExpenseId;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping(path = "/expenses")
 public class ExpenseController {
 
-    private final ListExpensesUseCase listExpensesUseCase;
+    private final ListExpensesBetweenDatesUseCase listExpensesBetweenDatesUseCase;
 
     private final CreateExpenseUseCase createExpenseUseCase;
 
@@ -33,19 +33,10 @@ public class ExpenseController {
 
     private final ExpenseApiMapper expenseApiMapper;
 
-    @GetMapping
-    public ResponseEntity<List<ExpenseEntity>> getExpenses() {
-
-        return ResponseEntity.ok(listExpensesUseCase.findAll());
-    }
-
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ExpenseEntity> getExpense(@PathVariable(value = "id") Long expenseId) {
-        try {
-            return ResponseEntity.ok(this.listExpensesUseCase.findById(expenseId));
-        } catch (RuntimeException error) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<ExpenseEntity> listExpensesBetweenDates(
+            @RequestParam(value = "startDate") LocalDateTime startDate) {
+        return null;
     }
 
     @PostMapping
@@ -76,7 +67,7 @@ public class ExpenseController {
     }
 
     @DeleteMapping ("/{id}")
-    public ResponseEntity deleteExpense(@PathVariable(value = "id") String id) {
+    public ResponseEntity<Object> deleteExpense(@PathVariable(value = "id") String id) {
 
         log.info(id);
 
