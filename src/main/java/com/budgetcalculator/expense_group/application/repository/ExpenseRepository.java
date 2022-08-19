@@ -2,14 +2,14 @@ package com.budgetcalculator.expense_group.application.repository;
 
 import com.budgetcalculator.expense_group.domain.model.aggregate.Expense;
 import com.budgetcalculator.expense_group.domain.model.aggregate.ExpenseId;
-import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 public interface ExpenseRepository {
 
-    List<ExpenseEntity> findAllExpenses();
+    List<Expense> getExpensesBetweenDates(LocalDate startDate, LocalDate endDate);
 
     Optional<Expense> findById(Long expenseId);
 

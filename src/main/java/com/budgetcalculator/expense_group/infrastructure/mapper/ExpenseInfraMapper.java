@@ -13,6 +13,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -73,5 +74,12 @@ public class ExpenseInfraMapper {
         return ExpenseIdEntity.builder()
                 .expenseId(src.getId())
                 .build();
+    }
+
+    public List<Expense> asExpenses(List<ExpenseEntity> expenseEntities) {
+
+        return expenseEntities.stream()
+                .map(this::asExpense)
+                .toList();
     }
 }

@@ -11,11 +11,16 @@ import com.budgetcalculator.expense_group.domain.model.aggregate.ExpenseId;
 import com.budgetcalculator.expense_group.infrastructure.model.aggregate.ExpenseEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -33,10 +38,16 @@ public class ExpenseController {
 
     private final ExpenseApiMapper expenseApiMapper;
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<ExpenseEntity> listExpensesBetweenDates(
-            @RequestParam(value = "startDate") LocalDateTime startDate) {
-        return null;
+    @GetMapping
+    public ResponseEntity<List<ExpenseDTO>> listExpensesBetweenDates(
+            @RequestParam(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+
+        var expenses = listExpensesBetweenDatesUseCase.getExpensesBetweenDates(startDate, endDate);
+
+        var expenseDTOs = expenseApiMapper.asExpenseDTOs(expenses);
+
+        return ResponseEntity.ok().body(expenseDTOs);
     }
 
     @PostMapping

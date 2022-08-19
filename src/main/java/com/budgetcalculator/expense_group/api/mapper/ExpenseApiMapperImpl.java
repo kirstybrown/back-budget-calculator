@@ -10,6 +10,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -59,5 +60,12 @@ public class ExpenseApiMapperImpl implements ExpenseApiMapper {
                         .build())
                 .beneficiaries(beneficiaries)
                 .build();
+    }
+
+    public List<ExpenseDTO> asExpenseDTOs(List<Expense> expenses) {
+
+        return expenses.stream()
+                .map(this::asExpenseDTO)
+                .toList();
     }
 }
