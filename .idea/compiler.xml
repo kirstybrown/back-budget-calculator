@@ -7,15 +7,34 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="budgetcalculator-api" />
-        <module name="back-budget-calculator" />
+        <module name="shared" />
+      </profile>
+      <profile name="Annotation profile for budgetcalculator-backend" enabled="true">
+        <sourceOutputDir name="../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="expense-group" />
+        <module name="apps" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="17" />
+    <bytecodeTargetLevel>
+      <module name="apps" target="17" />
+      <module name="budgetcalculator-backend" target="17" />
+      <module name="expense-group" target="17" />
+      <module name="expense-group (1)" target="17" />
+      <module name="expensegroup" target="17" />
+      <module name="shared" target="17" />
+      <module name="sharedl" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="budgetcalculator-api" options="-parameters" />
+      <module name="apps" options="-parameters" />
+      <module name="budgetcalculator-backend" options="-parameters" />
+      <module name="expense-group" options="-parameters" />
+      <module name="expensegroup" options="-parameters" />
+      <module name="shared" options="-parameters" />
+      <module name="sharedl" options="-parameters" />
     </option>
   </component>
 </project>

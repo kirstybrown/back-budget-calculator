@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/budget-calculator/applications/applications.iml" filepath="$PROJECT_DIR$/src/budget-calculator/applications/applications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/apps.iml" filepath="$PROJECT_DIR$/apps/apps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/budgetcalculator-backend.iml" filepath="$PROJECT_DIR$/budgetcalculator-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expense-group/expense-group.iml" filepath="$PROJECT_DIR$/expense-group/expense-group.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
+    </modules>
+  </component>
+</project>
