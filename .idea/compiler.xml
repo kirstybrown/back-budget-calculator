@@ -13,10 +13,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
-      <module name="apps" target="1.8" />
-      <module name="budgetcalculator-backend" target="1.8" />
-      <module name="expense-group" target="1.8" />
-      <module name="shared" target="1.8" />
+      <module name="apps" target="17" />
+      <module name="budgetcalculator-backend" target="17" />
+      <module name="expense-group" target="17" />
+      <module name="shared" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
