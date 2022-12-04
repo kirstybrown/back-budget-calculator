@@ -1,0 +1,31 @@
+# App config
+server:
+  port: 8081
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: Budget-calculator
+    version: @project.version@
+# Database with Mongodb
+# For docker-compose = spring.data.mongodb.host=mongo_db
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: budget_calculator_db
+# Logging
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+# Documentation with OpenAPI
+springdoc:
+  swagger-ui:
+    path: /expenses-api.html
+  api-docs:
+    path: /api-docs

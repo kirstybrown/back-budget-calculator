@@ -48,7 +48,47 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/apps/src/main/resources/application-local.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/apps/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/expense-group/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/expense-group/src/main/java/com/budgetcalculator/expense_group/domain.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/expense-group/src/main/java/com/budgetcalculator/expense_group/infrastructure/api_rest/CreateExpenseGroupPostController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/expense-group/src/main/java/com/budgetcalculator/expense_group/infrastructure/api_rest/domain.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/expense-group/src/main/resources/expense-group.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/expense-group/src/main/resources/expense.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/expense-group/target/generated-sources/openapi/src/main/java/com/budgetcalculator/api/ExpensesApi.java">
           <value>
             <set />
           </value>
@@ -59,6 +99,31 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/shared/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/shared/src/main/java/exception/ControllerExceptionHandler.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/shared/src/main/java/exception/ErrorMessage.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/shared/src/main/java/exception/LimitExceededBeneficiariesException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/shared/src/main/java/exception/ResourceNotFoundException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/shared/src/main/resources/expense.yml">
           <value>
             <set />
           </value>

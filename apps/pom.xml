@@ -7,24 +7,27 @@
         <groupId>com.budgetcalculator</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>apps</artifactId>
+    <name>apps</name>
     <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.budgetcalculator</groupId>
             <artifactId>expense-group</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.budgetcalculator</groupId>
             <artifactId>shared</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

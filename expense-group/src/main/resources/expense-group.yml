@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: Swagger incident - OpenAPI 3.0
+  description: API of expense
+  termsOfService: 'http://swagger.io/terms/'
+  version: 1.0.0
+tags:
+  - name: expenseGroup
+    description: API for expenses management
+paths:
+  '/expense-group':
+    get:
+      tags:
+        - expenseGroup
+      summary: Create expense group
+      description: Create expense group
+      operationId: createExpenseGroup
+      responses:
+        '200':
+          description: Successful operation
